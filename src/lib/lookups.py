@@ -2,6 +2,7 @@
 separate thread to the TK app
 """
 from typing import Tuple, Dict, List
+import platform
 from threading import Thread
 import asyncio
 from logging import Logger
@@ -101,6 +102,9 @@ def do_game_sheet(doc_id: str, credentials: Credentials, logger: Logger) \
     sheet = get_spreadsheet_range(doc_id, credentials, logger)
     if sheet is not None:
         logger.debug('Starting async loop for lookups')
+        if platform.system() == 'Windows':
+            asyncio.set_event_loop_policy(
+                asyncio.WindowsSelectorEventLoopPolicy())
         loop = asyncio.new_event_loop()
         sheet = loop.run_until_complete(
             loop_sheet(sheet, logger)
