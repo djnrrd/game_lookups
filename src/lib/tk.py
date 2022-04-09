@@ -152,7 +152,7 @@ class DocAction(tk.Frame):
         start_btn = tk.Button(self, text=ti.START_BTN, name='start_btn',
                               state='normal',
                               command=self.master.master.start_game_lookup)
-        start_btn.grid(row=0, column=0, sticky='ew', padx=5, pady=5)
+        start_btn.grid(row=0, column=0, sticky='', padx=5, pady=15)
 
 
 class DocLog(tk.Frame):
