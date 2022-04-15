@@ -40,7 +40,7 @@ def match_game(name: str, games: Dict, logger: Logger) -> List[str]:
     if len(games) > 1:
         logger.info('Multiple matches found, looking for exact matches')
         filtered_games = [x for x in games
-                          if x['name'].upper() ==  name.upper()]
+                          if x['name'].upper() == name.upper()]
         # If it's still multiple matches
         if len(filtered_games) > 1:
             logger.warning('Multiple exact matches found, update sheet '
@@ -61,7 +61,7 @@ def match_game(name: str, games: Dict, logger: Logger) -> List[str]:
         if game['keywords'] is not None else ''
     steampage = ','.join(game['steampage']) if game['steampage'] is not None \
         else ''
-    return [game['summary'], genres, keywords, str(game.get('rating')),
+    return [game.get('summary'), genres, keywords, str(game.get('rating')),
             steampage]
 
 
