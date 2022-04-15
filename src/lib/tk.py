@@ -3,10 +3,11 @@
 import tkinter as tk
 from tkinter import font as tk_font
 from tkinter import scrolledtext, messagebox, DISABLED
+from google.auth.exceptions import RefreshError
 from . import text_includes as ti
 from .logger import setup_logger
 from .google import get_documents, get_credentials
-from .config import load_google_credentials
+from .config import load_google_credentials, delete_google_credentials
 from .lookups import start_lookup_thread
 
 
@@ -63,10 +64,17 @@ class GameLookupApp(tk.Tk):
             self.logger.debug('Credentials in object, loading list of '
                               'Spreadsheets')
             self.doc_list.delete(0, 'end')
-            self.google_sheets = get_documents(self.google_credentials,
-                                               self.logger)
-            for sheet in self.google_sheets:
-                self.doc_list.insert('end', sheet)
+            try:
+                self.google_sheets = get_documents(self.google_credentials,
+                                                   self.logger)
+                for sheet in self.google_sheets:
+                    self.doc_list.insert('end', sheet)
+            except RefreshError as err:
+                self.logger.warning('Credentials have expired, deleting '
+                                    'cached credentials.')
+                self.google_credentials = None
+                delete_google_credentials()
+                self.load_doc_list()
         else:
             self.logger.debug('No credentials in object, attempting to load '
                               'from disc')

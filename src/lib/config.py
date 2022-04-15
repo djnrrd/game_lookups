@@ -45,3 +45,12 @@ def save_google_credentials(credentials: Credentials) -> None:
     pickle_file = os.path.join(pickle_dir, 'google_account.pkl')
     with open(pickle_file, 'wb') as f:
         pickle.dump(credentials, f)
+
+
+def delete_google_credentials() -> None:
+    """Delete the saved pickle file from disc
+    """
+    # Attempt to load the pickle file
+    pickle_dir = user_config_dir('game_lookups', 'djnrrd')
+    pickle_file = os.path.join(pickle_dir, 'google_account.pkl')
+    os.remove(pickle_file)
