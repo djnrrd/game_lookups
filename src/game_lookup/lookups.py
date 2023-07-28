@@ -7,10 +7,10 @@ from threading import Thread
 import asyncio
 from logging import Logger
 from google.oauth2.credentials import Credentials
-from conf import twitch
-from .google import pre_flight, get_spreadsheet_range, update_sheet_range
-from .twitch import AsyncTwitchIDAPI
-from .igdb import IgdbAPI
+from game_lookup_conf import twitch
+from game_lookup.google import pre_flight, get_spreadsheet_range, update_sheet_range
+from game_lookup.twitch import AsyncTwitchIDAPI
+from game_lookup.igdb import IgdbAPI
 
 
 async def get_twitch_oauth(logger: Logger) -> Tuple[str, str]:

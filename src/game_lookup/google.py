@@ -7,7 +7,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from .config import save_google_credentials
+from game_lookup.config import save_google_credentials
 
 
 class GoogleSheet:
@@ -32,7 +32,7 @@ def get_credentials(logger: Logger) -> Union[Credentials, None]:
 
     :return: Credentials object
     """
-    client_secret = os.path.join(os.path.dirname(__file__), '..', 'conf',
+    client_secret = os.path.join(os.path.dirname(__file__), '..', 'game_lookup_conf',
                                  'google_client_secret.json')
     scopes = ['https://www.googleapis.com/auth/drive',
               'https://www.googleapis.com/auth/drive.file',

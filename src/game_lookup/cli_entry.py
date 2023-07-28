@@ -1,7 +1,7 @@
 """Entry point for the application
 """
 import argparse
-from .tk import GameLookupApp
+from game_lookup.tk import GameLookupApp
 
 
 def _add_args() -> argparse.ArgumentParser:

@@ -4,3 +4,4 @@
 /src/game_lookup.egg-info/
 /.idea
 __pycache__/
+/.vscode/
