@@ -2,3 +2,5 @@
 /src/conf/google_client_secret.json
 /dist/
 /src/game_lookup.egg-info/
+/.idea
+__pycache__/

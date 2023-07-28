@@ -49,7 +49,7 @@ def match_game(name: str, games: Dict, logger: Logger) -> List[str]:
         if len(filtered_games) == 0:
             logger.warning('No exact matches found, Update Column A with '
                            'correct title')
-            return ['NO EXACT MATCHES'] + [x['name'] for x in games]
+            return ['NO EXACT MATCHES'] + [','.join([x['name'] for x in games])]
         # We should only have one game left
         game = filtered_games.pop()
     else:
